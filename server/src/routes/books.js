@@ -91,7 +91,7 @@ router.post(
       let fileName = null;
 
       if (req.file) {
-        const cloudinaryResponse = await uploadOnCloudinary(req.file.path);
+        const cloudinaryResponse = await uploadOnCloudinary(req.file.buffer, req.file.originalname);
         if (cloudinaryResponse) {
           fileUrl = cloudinaryResponse.secure_url;
           fileName = req.file.originalname;
@@ -142,7 +142,7 @@ router.put(
     let fileName = book.fileName;
 
     if (req.file) {
-      const cloudinaryResponse = await uploadOnCloudinary(req.file.path);
+      const cloudinaryResponse = await uploadOnCloudinary(req.file.buffer, req.file.originalname);
       if (cloudinaryResponse) {
         fileUrl = cloudinaryResponse.secure_url;
         fileName = req.file.originalname;
